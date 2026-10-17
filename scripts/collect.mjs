@@ -17,6 +17,7 @@ import { downloadCallBulk, readSchedules, crossCheck } from './lib/ffiec.mjs';
 import { buildBankTable } from './lib/build.mjs';
 import { runGates, sodTie, districtCheck } from './lib/gates.mjs';
 import * as C from './lib/calibrate.mjs';
+import { lendingLabels } from './lib/labels.mjs';
 import { readJsonIfExists, writeJson, writeContent } from './lib/storage.mjs';
 import { runProvenance } from './lib/provenance.mjs';
 import { CITATIONS, DISTRICTS } from './lib/constants.mjs';
@@ -207,8 +208,9 @@ export async function main({ force = process.argv.includes('--force'), env = pro
 
     // Replays are frozen after the first successful build.
     const replayEntries = [];
+    let labels = null;
     for (const replay of policy.replays) {
-      const existing = previousManifest?.files?.find((f) => f.id === `replay:${replay.id}`);
+      const existing = previousManifest?.files?.find((f) => f.id === `replay:${replay.id}` && f.version === policy.replayVersion);
       if (existing) { replayEntries.push(existing); continue; }
       log(`Building replay ${replay.id}...`);
       const rf = await fdicPull('financials', { filters: `REPDTE:${replay.reportDate}`, fields, sortBy: 'CERT', http });
@@ -221,13 +223,22 @@ export async function main({ force = process.argv.includes('--force'), env = pro
         const when = new Date(Date.UTC(y, m - 1, d));
         if (when > new Date(Date.parse(isoDate(replay.reportDate))) && when <= cutoff) names.set(Number(f.CERT), `${f.NAME} (failed ${f.FAILDATE})`);
       }
-      const { table: rt } = buildBankTable({ reportDate: isoDate(replay.reportDate), fdicIndex: rf.index.name, financials: rf.rows, institutions: inst.rows, sod: rsod.rows, listedRssd: listed, failedNames: names, activeOnly: false, extra: { beta: betaMap } });
+      let extra = { beta: betaMap };
+      if (replay.labels) {
+        labels ??= await lendingLabels(http);
+        const btfp = new Map();
+        for (const i of inst.rows) { const amount = labels.btfpRssd.get(String(i.FED_RSSD)); if (amount) btfp.set(Number(i.CERT), Math.round(amount / 1000)); }
+        const dw = new Map([...labels.dwCert].map(([c, a]) => [c, Math.round(a / 1000)]));
+        extra = { ...extra, btfp, dw };
+      }
+      const { table: rt } = buildBankTable({ reportDate: isoDate(replay.reportDate), fdicIndex: rf.index.name, financials: rf.rows, institutions: inst.rows, sod: rsod.rows, listedRssd: listed, failedNames: names, activeOnly: false, extra });
+      if (replay.labels) rt.labels = { ...labels.summary, source: CITATIONS.lending, note: 'btfp and dw columns: thousands of dollars borrowed in the window; validation only, never a model input' };
       rt.kind = 'replay';
       rt.replay = replay.id;
       rt.curveDate = replay.curveDate;
       rt.sodYear = rsodYear;
       const written = await writeContent(GENERATED, 'replays', rt);
-      replayEntries.push({ id: `replay:${replay.id}`, ...written, reportDate: rt.reportDate });
+      replayEntries.push({ id: `replay:${replay.id}`, ...written, reportDate: rt.reportDate, version: policy.replayVersion });
     }
 
     // Curves: every quarter end used, the replay dates and the latest day.

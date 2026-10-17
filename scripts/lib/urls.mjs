@@ -1,5 +1,5 @@
 // The only place request URLs are built, plus the last check before any network call.
-import { FDIC_ORIGIN, TREASURY_ORIGIN, FRED_ORIGIN, FFIEC_ORIGIN, MARGINS_ORIGIN, ALLOWED_HOSTS, FDIC_ENDPOINTS } from './constants.mjs';
+import { FDIC_ORIGIN, TREASURY_ORIGIN, FRED_ORIGIN, FFIEC_ORIGIN, MARGINS_ORIGIN, FRB_ORIGIN, ALLOWED_HOSTS, FDIC_ENDPOINTS } from './constants.mjs';
 
 export class RequestGuardError extends Error {
   constructor(message) { super(message); this.name = 'RequestGuardError'; }
@@ -36,6 +36,14 @@ export function fredUrl(series) {
   return `${FRED_ORIGIN}/graph/fredgraph.csv?id=${series.join(',')}`;
 }
 
+// Fed lending disclosures used to label the 2023 replay (frozen files).
+export const FRB_FILES = Object.freeze({
+  btfp: '/publications/files/section-11s-btfp-transaction-specific-disclosures-03-12-25.xlsx',
+  dw2023q1: '/regreform/files/dw_data_2023_q1.xlsx',
+  dw2023q2: '/regreform/files/dw_data_2023_q2.xlsx',
+});
+export const frbFileUrl = (id) => { if (!FRB_FILES[id]) throw new RequestGuardError(`Unknown Fed file ${id}`); return `${FRB_ORIGIN}${FRB_FILES[id]}`; };
+
 export const ffiecBulkUrl = () => `${FFIEC_ORIGIN}${FFIEC_BULK_PATH}`;
 export const marginsUrl = () => `${MARGINS_ORIGIN}${MARGINS_PATHS.current}`;
 
@@ -50,6 +58,7 @@ export function assertRequestAllowed(urlText) {
     'fred.stlouisfed.org': () => url.pathname === '/graph/fredgraph.csv',
     'cdr.ffiec.gov': () => url.pathname === FFIEC_BULK_PATH && !url.search,
     'www.frbdiscountwindow.org': () => Object.values(MARGINS_PATHS).includes(url.pathname) && !url.search,
+    'www.federalreserve.gov': () => Object.values(FRB_FILES).includes(url.pathname) && !url.search,
   }[url.hostname];
   if (!ok()) throw new RequestGuardError(`Path ${url.pathname} is not allowed on ${url.hostname}`);
   return url;
