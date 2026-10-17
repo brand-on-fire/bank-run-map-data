@@ -53,4 +53,7 @@ test('lendable value applies margins below 100% and never exceeds collateral', (
   assert.ok(v.securities > 0.9 * 190_000 && v.securities < 190_000);
   assert.ok(v.loans > 0.5 * 600_000 && v.loans < 600_000);
   assert.equal(v.scope, 'out');
+  const down = lendableValue(row, margins, curve, null, -19_000);
+  assert.ok(Math.abs(down.securities / v.securities - 0.9) < 0.02, 'a 10% fall in market value cuts lendable securities by about 10%');
+  assert.equal(down.loans, v.loans);
 });

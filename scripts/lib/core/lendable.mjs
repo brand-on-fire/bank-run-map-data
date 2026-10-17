@@ -2,7 +2,10 @@
 // margins. Shared by the pipeline and the app.
 //
 // Gross collateral: every security at fair value and every loan at book value,
-// less what is already encumbered elsewhere:
+// less what is already encumbered elsewhere. securitiesChange moves the securities'
+// fair value from the filing to another curve (markChange), since the Fed lends
+// against market value on the day; it defaults to 0, the filing's own value.
+// Encumbered collateral:
 //   securities: SCPLEDGE (pledged for public deposits, repo or FHLB);
 //   loans: FHLB advances divided by FHLB_LENDING_VALUE (loans held at the FHLB).
 // Assumptions are named here and listed in the app's facts.
@@ -60,11 +63,11 @@ function bucketedSecurityMargin(row, margins, kind, buckets, curve, scale) {
   return total > 0 ? weighted / total : securityMargin(margins, kind, 3);
 }
 
-export function lendableValue(row, margins, curve, fit) {
+export function lendableValue(row, margins, curve, fit, securitiesChange = 0) {
   const scale = groupScales(fit);
   const nonMortgage = SECURITY_BUCKETS.filter((b) => b.group === 'nonMortgage');
   const mortgage = SECURITY_BUCKETS.filter((b) => b.group !== 'nonMortgage');
-  const fv = Math.max(0, (row.SCAF ?? 0) + (row.SCHF ?? 0));
+  const fv = Math.max(0, (row.SCAF ?? 0) + (row.SCHF ?? 0) + securitiesChange);
   const book = Math.max(1, (row.SCAA ?? 0) + (row.SCHA ?? 0));
   const free = Math.max(0, fv - (row.SCPLEDGE ?? 0) * (fv / book));
   const parts = {
