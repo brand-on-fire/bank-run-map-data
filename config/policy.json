@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "enabled": true,
+  "userAgent": "bank-run-map-data/1.0 (+https://github.com/brand-on-fire/bank-run-map-data)",
+  "userAgentNote": "The FDIC API firewall returned 403 to 'BankRunMap/1.0' and 'BankRunMapPublicCollector/1' and 200 to this string (tested 2026-10-17).",
+  "historyFrom": "20210930",
+  "betaWindow": { "from": "20211231", "to": "20231231" },
+  "durationTrainThrough": "20241231",
+  "replays": [
+    { "id": "2023", "reportDate": "20221231", "curveDate": "2023-03-08", "nameFailuresWithinMonths": 24 },
+    { "id": "jmps", "reportDate": "20220331", "curveDate": "2023-03-31", "nameFailuresWithinMonths": 24 },
+    { "id": "2008", "reportDate": "20080630", "curveDate": "2008-09-12", "nameFailuresWithinMonths": 24 }
+  ],
+  "readiness": {
+    "asOf": "2023-12-31",
+    "reportDate": "20231231",
+    "banksWithDocuments": 3900,
+    "banksPledged": 2000,
+    "pledgedLendableBanksThousands": 2600000000,
+    "institutionsLendableThousands": { "total": 2756000000, "loans": 1806000000, "securities": 950000000 },
+    "sources": [
+      "https://www.federalreserve.gov/newsevents/speech/jefferson20241009a.htm",
+      "https://www.federalreserve.gov/monetarypolicy/discount-window-readiness.htm"
+    ]
+  },
+  "gates": {
+    "bankCountMaxChange": 0.03,
+    "blankRateMaxDrift": 0.05,
+    "totalsMaxQuarterChange": { "assets": 0.10, "deposits": 0.10, "equity": 0.15 },
+    "sodTieShare": 0.97,
+    "sodTieTolerance": 0.02,
+    "durationOutOfSampleMaxError": 0.10
+  },
+  "publication": {
+    "maxPayloadBytes": 26214400,
+    "maxRepositoryBytes": 209715200,
+    "keepaliveDays": 30
+  }
+}

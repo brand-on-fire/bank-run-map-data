@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "reviewed": "Each entry checked against the scanned page of frb_districts_199603.pdf (FRASER); line numbers refer to frb_districts_1996.txt",
+  "states": [
+    { "text": "Massachussetts", "state": "MA", "reason": "Board typo on page 6 (the scan reads Massachussetts) for Massachusetts" },
+    { "text": "MiSSOliri", "state": "MO", "reason": "OCR misread of the page 24 heading, which the scan shows as Missouri (Counties of)" },
+    { "text": "Virgin Islands", "state": "VI", "reason": "Page 5 territory list; Census names it United States Virgin Islands" },
+    { "text": "Northern Mariana Islands", "state": "MP", "reason": "Page 5 territory list (wrapped onto two lines); Census names it Commonwealth of the Northern Mariana Islands" }
+  ],
+  "counties": [
+    { "district": "02", "office": "New York Head Office", "listedUnder": "NY", "text": "Somerset", "state": "NJ", "county": "Somerset", "reason": "Page 7 third column of the New Jersey list (Somerset, Sussex, Union, Warren); text extraction put it after the New York list" },
+    { "district": "02", "office": "New York Head Office", "listedUnder": "NY", "text": "Sussex", "state": "NJ", "county": "Sussex", "reason": "Page 7 third column of the New Jersey list (Somerset, Sussex, Union, Warren); text extraction put it after the New York list" },
+    { "district": "02", "office": "New York Head Office", "listedUnder": "NY", "text": "Union", "state": "NJ", "county": "Union", "reason": "Page 7 third column of the New Jersey list (Somerset, Sussex, Union, Warren); text extraction put it after the New York list" },
+    { "district": "02", "office": "New York Head Office", "listedUnder": "NY", "text": "Warren", "occurrence": 1, "state": "NJ", "county": "Warren", "reason": "Page 7 New Jersey third column (line 174); the second Warren under New York (line 188) is New York's own Warren County" },
+    { "district": "05", "listedUnder": "VA", "text": "Loudon", "county": "Loudoun", "reason": "Board spelling in both page 11 Virginia headings for Loudoun County (51107)" },
+    { "district": "05", "office": "Richmond Head Office", "listedUnder": "WV", "text": "Greenbriar", "county": "Greenbrier", "reason": "Board spelling on page 11 (the scan reads Greenbriar) for Greenbrier County" },
+    { "district": "05", "office": "Richmond Head Office", "listedUnder": "WV", "text": "Win", "county": "Wirt", "reason": "OCR misread; the page 11 scan reads Wirt" },
+    { "district": "06", "office": "Miami Branch", "listedUnder": "FL", "text": "Dade", "county": "Miami-Dade", "reason": "Dade County was renamed Miami-Dade in 1997 and recoded from 12025 to 12086" },
+    { "district": "06", "office": "Nashville Branch", "listedUnder": "TN", "text": "Scon", "county": "Scott", "reason": "OCR misread; the page 14 scan reads Scott" },
+    { "district": "06", "office": "New Orleans Branch", "listedUnder": "MS", "text": "Scon", "county": "Scott", "reason": "OCR misread; the page 15 scan reads Scott" },
+    { "district": "08", "office": "St. Louis Head Office", "listedUnder": "MO", "text": "St. Fraticois", "county": "St. Francois", "reason": "Board typo on page 19 (the scan reads St. Fraticois) for St. Francois County" },
+    { "district": "08", "office": "Louisville Branch", "listedUnder": "KY", "text": "Bulhtt", "county": "Bullitt", "reason": "Board typo on page 21 (the scan reads Bulhtt) for Bullitt County" },
+    { "district": "08", "office": "Louisville Branch", "listedUnder": "KY", "text": "Buder", "county": "Butler", "reason": "OCR misread; the page 21 scan reads Butler" },
+    { "district": "09", "office": "Minneapolis Head Office", "listedUnder": "WI", "text": "Minneapolis", "ignore": true, "reason": "Fragment of the page 23 label Minneapolis Office Total, not a county" },
+    { "district": "10", "office": "Kansas City Head Office", "listedUnder": "MO", "text": "Penis", "county": "Pettis", "reason": "OCR misread; the page 24 scan reads Pettis" },
+    { "district": "11", "office": "Dallas Head Office", "listedUnder": "TX", "text": "McCulIoch", "county": "McCulloch", "reason": "OCR misread (capital I for l); the page 26 scan reads McCulloch" },
+    { "district": "11", "office": "San Antonio Branch", "listedUnder": "TX", "text": "Dimmity", "county": "Dimmit", "reason": "Board typo on page 28 (the scan reads Dimmity) for Dimmit County" },
+    { "district": "12", "office": "Los Angeles Branch", "listedUnder": "CA", "text": "San Bemadino", "county": "San Bernardino", "reason": "Page 29 scan reads San Bernadino (Board typo, OCR read rn as m) for San Bernardino County" },
+    { "district": "12", "office": "Los Angeles Branch", "listedUnder": "NV", "text": "San Diego", "state": "CA", "county": "San Diego", "reason": "Page 29 third column of the Los Angeles Branch California list; text extraction put it after the Nevada (Clark County only) line" },
+    { "district": "12", "office": "Los Angeles Branch", "listedUnder": "NV", "text": "San Luis Obispo", "state": "CA", "county": "San Luis Obispo", "reason": "Page 29 third column of the Los Angeles Branch California list; text extraction put it after the Nevada (Clark County only) line" },
+    { "district": "12", "office": "Los Angeles Branch", "listedUnder": "NV", "text": "Santa Barbara", "state": "CA", "county": "Santa Barbara", "reason": "Page 29 third column of the Los Angeles Branch California list; text extraction put it after the Nevada (Clark County only) line" },
+    { "district": "12", "office": "Los Angeles Branch", "listedUnder": "NV", "text": "Ventura", "state": "CA", "county": "Ventura", "reason": "Page 29 third column of the Los Angeles Branch California list; text extraction put it after the Nevada (Clark County only) line" },
+    { "district": "12", "office": "Portland Branch", "listedUnder": "WA", "text": "Nez Perce", "state": "ID", "county": "Nez Perce", "reason": "Page 30 third column of the Portland Branch Idaho list; text extraction put it after the Washington heading" },
+    { "district": "12", "office": "Portland Branch", "listedUnder": "WA", "text": "Shoshone", "state": "ID", "county": "Shoshone", "reason": "Page 30 third column of the Portland Branch Idaho list; text extraction put it after the Washington heading" }
+  ],
+  "cities": [
+    { "district": "06", "listedUnder": "TN", "text": "Chattanooga", "withinCounty": "Hamilton", "reason": "Page 14 footnote 1/ lists Hamilton County except the City of Chattanooga, so the city is the rest of Hamilton" }
+  ],
+  "fdicOverrides": []
+}

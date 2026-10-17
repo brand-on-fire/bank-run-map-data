@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "units": "FDIC reports amounts in thousands of U.S. dollars; ratios in percent",
+  "financials": {
+    "id": [
+      "CERT",
+      "REPDTE",
+      "ASSET"
+    ],
+    "deposits": [
+      "DEP",
+      "DEPDOM",
+      "DEPINS",
+      "DEPUNINS",
+      "DEPLGAMT",
+      "DEPLGB",
+      "DEPLGRA",
+      "DEPLGRN",
+      "DEPSMAMT",
+      "DEPSMB",
+      "DEPNIDOM",
+      "BRO",
+      "TRN",
+      "NTR",
+      "NTRTMLGJ"
+    ],
+    "liquidity": [
+      "CHBAL",
+      "CHFRB",
+      "FREPO",
+      "SCPLEDGE",
+      "LNPLEDGE"
+    ],
+    "securities": [
+      "SC",
+      "SCAA",
+      "SCAF",
+      "SCHA",
+      "SCHF",
+      "SCUST",
+      "SCAGE",
+      "SCMTGBK",
+      "SCRMBPI",
+      "SCCMOS",
+      "SCMUNI"
+    ],
+    "securityBuckets": [
+      "SCNM3LES",
+      "SCNM3T12",
+      "SCNM1T3",
+      "SCNM3T5",
+      "SCNM5T15",
+      "SCNMOV15",
+      "SCPT3LES",
+      "SCPT3T12",
+      "SCPT1T3",
+      "SCPT3T5",
+      "SCPT5T15",
+      "SCPTOV15",
+      "SCO3YLES",
+      "SCOOV3Y"
+    ],
+    "loans": [
+      "LNLSGR",
+      "LNLSNET",
+      "LNRENRES",
+      "LNREMULT",
+      "LNRECONS"
+    ],
+    "loanBuckets": [
+      "LNRS3LES",
+      "LNRS3T12",
+      "LNRS1T3",
+      "LNRS3T5",
+      "LNRS5T15",
+      "LNRSOV15",
+      "LNOT3LES",
+      "LNOT3T12",
+      "LNOT1T3",
+      "LNOT3T5",
+      "LNOT5T15",
+      "LNOTOV15"
+    ],
+    "funding": [
+      "OTHBFHLB",
+      "OTHBRF",
+      "FREPP"
+    ],
+    "capital": [
+      "EQ",
+      "EQCCOMPI",
+      "INTAN",
+      "IDT1CER",
+      "RBC1AAJ"
+    ],
+    "hedges": [
+      "RTNVS"
+    ],
+    "income": [
+      "EDEPDOMQ",
+      "NONIXQ",
+      "ILNDOMQ",
+      "NIMYQ"
+    ]
+  },
+  "history": [
+    "CERT",
+    "REPDTE",
+    "ASSET",
+    "DEPDOM",
+    "EDEPDOMQ",
+    "SCAA",
+    "SCAF",
+    "SCHA",
+    "SCHF",
+    "SCNM3LES",
+    "SCNM3T12",
+    "SCNM1T3",
+    "SCNM3T5",
+    "SCNM5T15",
+    "SCNMOV15",
+    "SCPT3LES",
+    "SCPT3T12",
+    "SCPT1T3",
+    "SCPT3T5",
+    "SCPT5T15",
+    "SCPTOV15",
+    "SCO3YLES",
+    "SCOOV3Y"
+  ],
+  "institutions": [
+    "CERT",
+    "NAME",
+    "CITY",
+    "STALP",
+    "STCNTY",
+    "LATITUDE",
+    "LONGITUDE",
+    "FED",
+    "FED_RSSD",
+    "RSSDHCR",
+    "NAMEHCR",
+    "ACTIVE",
+    "BKCLASS",
+    "REGAGNT",
+    "ENDEFYMD"
+  ],
+  "sod": [
+    "CERT",
+    "YEAR",
+    "BRNUM",
+    "DEPSUMBR",
+    "STALPBR",
+    "STCNTYBR"
+  ],
+  "failures": [
+    "CERT",
+    "NAME",
+    "CITYST",
+    "PSTALP",
+    "FAILDATE",
+    "FAILYR",
+    "QBFASSET",
+    "QBFDEP",
+    "COST",
+    "COMMENTS",
+    "RESTYPE",
+    "RESTYPE1",
+    "SAVR"
+  ],
+  "ffiecCrossCheck": {
+    "note": "MDRM items that reproduce each FDIC field (RCFD for consolidated 031 filers, else RCON); match rates measured on 2026-06-30 data: ASSET 99.28%, DEPDOM 99.93%, EQ 99.19%, SCAF 99.95%, SCAA 99.95%, SCHA 99.98%, SCHF 99.98%, CHBAL 99.86%, DEPUNINS 99.70% of the 998 banks that report RCON5597",
+    "fields": {
+      "ASSET": {
+        "schedule": "Schedule RC ",
+        "codes": [
+          "2170"
+        ]
+      },
+      "DEPDOM": {
+        "schedule": "Schedule RC ",
+        "codes": [
+          "RCON2200"
+        ]
+      },
+      "EQ": {
+        "schedule": "Schedule RC ",
+        "codes": [
+          "3210"
+        ]
+      },
+      "SCAF": {
+        "schedule": "Schedule RC ",
+        "codes": [
+          "1773"
+        ]
+      },
+      "CHBAL": {
+        "schedule": "Schedule RC ",
+        "codes": [
+          "0071",
+          "0081"
+        ]
+      },
+      "SCAA": {
+        "schedule": "Schedule RCB",
+        "codes": [
+          "1772"
+        ]
+      },
+      "SCHA": {
+        "schedule": "Schedule RCB",
+        "codes": [
+          "1754"
+        ]
+      },
+      "SCHF": {
+        "schedule": "Schedule RCB",
+        "codes": [
+          "1771"
+        ]
+      },
+      "DEPUNINS": {
+        "schedule": "Schedule RCO",
+        "codes": [
+          "RCON5597"
+        ],
+        "reportedBy": "banks with $1 billion or more in assets; FDIC estimates the rest as DEPLGAMT - 250*DEPLGB + DEPLGRA - 250*DEPLGRN (matches 3,235 of 3,246 banks under $1B on 2026-06-30)"
+      }
+    },
+    "minExactShare": 0.97,
+    "maxAggregateGap": 0.005
+  }
+}
